@@ -22,7 +22,7 @@ describe('async', () => {
       }).catch(error => done());
     });
     it('should get Rey correctly', done => {
-      characterService.getCharacter(2).then(character => {
+      characterService.getCharacter(1).then(character => {
         expect(character.name).toEqual('Rey');
         done();
       }).catch(error => done());
