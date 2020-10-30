@@ -55,7 +55,7 @@ describe('Computer', () => {
 
       expect(result).toEqual('OFF');
     });
-    it('should return "OFF" when the value of status is false', () => {
+    it('should return "ON" when the value of status is true', () => {
       computer.status = true;
       
       let result = computer.getStatus();
