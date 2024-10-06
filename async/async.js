@@ -7,7 +7,7 @@ let characters = [
   },
   {
     id: 1,
-    name: 'Rey',
+    name: 'Rey',    
     affiliation: 'Resistance',
     type: 'Jedi'
   },
@@ -27,28 +27,35 @@ let characters = [
 
 class CharacterService {
   constructor() {}
+  
   getAllCharacters() {
-    return new Promise((reject, resolve) => {
+    return new Promise((resolve) => {
       resolve(characters);
     });
   }
+  
   getCharacter(characterId) {
     return new Promise((resolve, reject) => {
-      if (characterId) {
-        let character = characters.find(char => char.id == char.id);
+      const character = characters.find(char => char.id === characterId);
+      if (character) {
         resolve(character);
       } else {
-        reject('something went wrong');
+        reject('Character not found');
       }
     });
   }
+  
   getCharactersByType(type) {
     return new Promise((resolve, reject) => {
       if (type) {
-        let filteredCharacters = characters.filter(char => char.type == type);
-        reject('something went wrong');
+        const filteredCharacters = characters.filter(char => char.type === type);
+        if (filteredCharacters.length > 0) {
+          resolve(filteredCharacters);
+        } else {
+          reject('No characters found of that type');
+        }
       } else {
-        resolve(filteredCharacters);
+        reject('Type not specified');
       }
     });
   }
